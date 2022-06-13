@@ -1,0 +1,21 @@
+.container {
+  width: 100%;
+  height: 15.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--grey-300);
+}
+
+.container img {
+  margin-bottom: 1rem;
+}
+
+.container p {
+  line-height: 1.4; 
+}
+
+.container p:first-of-type {
+  font-weight: bold;
+}
