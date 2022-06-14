@@ -1,4 +1,5 @@
 import { EmptyList } from "./EmptyList";
+import { TodoItem } from "./TodoItem";
 import styles from "./TodoList.module.css";
 
 export function TodoList() {
@@ -15,6 +16,9 @@ export function TodoList() {
         </div>
       </header>
       <EmptyList />
+      <ul>
+        <TodoItem />
+      </ul>
     </div>
   );
 }
