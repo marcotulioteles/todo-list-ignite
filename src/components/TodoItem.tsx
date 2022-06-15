@@ -1,14 +1,15 @@
+import { useState } from "react";
 import { Trash } from "phosphor-react";
+import { TodoItemProps } from "../App";
 
 import styles from "./TodoItem.module.css";
 
-export function TodoItem() {
+export function TodoItem({ description }: TodoItemProps) {
   return (
     <li className={styles.container}>
       <div className={styles.content}>
         <label className={styles.checkboxContainer}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis iusto,
-          sunt recusandae eligendi odit reprehenderit cumque optio enim quo.
+          {description}
           <input type="checkbox" />
           <span className={styles.checkmark}></span>
         </label>

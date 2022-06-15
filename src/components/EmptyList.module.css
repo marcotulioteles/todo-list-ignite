@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   color: var(--grey-300);
+  border-top: 1px solid var(--grey-400);
 }
 
 .container img {
