@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { Header } from "./components/Header";
 import { TodoList } from "./components/TodoList";
 import { PlusCircle } from "phosphor-react";
@@ -6,6 +6,7 @@ import { PlusCircle } from "phosphor-react";
 import "./global.css";
 
 import styles from "./App.module.css";
+import { TodoContext, TodosProvider } from "./contexts/TodoContext";
 
 export interface TodoItemProps {
   description: string;
@@ -13,7 +14,7 @@ export interface TodoItemProps {
 }
 
 function App() {
-  const [todoList, setTodoList] = useState<TodoItemProps[]>([]);
+  const { setTodoList } = useContext(TodoContext);
   const [newTodo, setNewTodo] = useState<TodoItemProps>({} as TodoItemProps);
 
   const handleUpdateTodoList = (event: FormEvent) => {
@@ -22,19 +23,8 @@ function App() {
     setNewTodo({ ...newTodo, description: "" });
   };
 
-  const handleNewTodo = (event: ChangeEvent<HTMLInputElement>) => {
-    const inputDescription = event.target.value;
-
-    const newTodoInputContent = {
-      description: inputDescription,
-      done: false,
-    };
-
-    setNewTodo(newTodoInputContent);
-  };
-
   return (
-    <>
+    <TodosProvider>
       <Header />
       <div className={styles.wrapper}>
         <form className={styles.container} onSubmit={handleUpdateTodoList}>
@@ -42,7 +32,12 @@ function App() {
             <input
               type="text"
               placeholder="Adicione uma nova tarefa"
-              onChange={handleNewTodo}
+              onChange={(event) => {
+                setNewTodo({
+                  description: event.target.value,
+                  done: false,
+                });
+              }}
               value={newTodo.description || ""}
             />
           </label>
@@ -51,9 +46,9 @@ function App() {
             <PlusCircle weight="bold" size={18} />
           </button>
         </form>
-        <TodoList todoList={todoList} />
+        <TodoList />
       </div>
-    </>
+    </TodosProvider>
   );
 }
 

@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { TodoItemProps } from "../App";
+import { TodoContext } from "../contexts/TodoContext";
 import { EmptyList } from "./EmptyList";
 import { TodoItem } from "./TodoItem";
 import styles from "./TodoList.module.css";
@@ -7,7 +9,9 @@ interface TodoListProps {
   todoList: TodoItemProps[];
 }
 
-export function TodoList({ todoList }: TodoListProps) {
+export function TodoList() {
+  const { todoList } = useContext(TodoContext);
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
