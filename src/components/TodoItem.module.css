@@ -17,10 +17,19 @@
   color: var(--grey-100);
 }
 
+.content > svg {
+  cursor: pointer;
+}
+
 .checkboxContainer {
   display: block;
   position: relative;
   padding-left: 2rem;
+}
+
+.checked {
+  color: var(--grey-300);
+  text-decoration: line-through;
 }
 
 .checkboxContainer input {

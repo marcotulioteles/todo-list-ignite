@@ -1,16 +1,11 @@
 import { useContext } from "react";
-import { TodoItemProps } from "../App";
 import { TodoContext } from "../contexts/TodoContext";
 import { EmptyList } from "./EmptyList";
 import { TodoItem } from "./TodoItem";
 import styles from "./TodoList.module.css";
 
-interface TodoListProps {
-  todoList: TodoItemProps[];
-}
-
 export function TodoList() {
-  const { todoList } = useContext(TodoContext);
+  const { todoList, todosDoneNumber } = useContext(TodoContext);
 
   return (
     <div className={styles.container}>
@@ -22,16 +17,16 @@ export function TodoList() {
         <div className={styles.finishedTasks}>
           <h2>Concluídas</h2>
           <span className={styles.counter}>
-            {todoList.length > 0
-              ? `${todoList.length} de ${todoList.length}`
-              : todoList.length}
+            {todosDoneNumber === 0 || todosDoneNumber === todoList.length
+              ? `${todosDoneNumber}`
+              : `${todosDoneNumber + " de " + todoList.length}`}
           </span>
         </div>
       </header>
       {todoList.length > 0 ? (
         <ul>
-          {todoList.map((todo) => (
-            <TodoItem key={todo.description} description={todo.description} />
+          {todoList.map((todo, index) => (
+            <TodoItem key={todo.description} index={index} />
           ))}
         </ul>
       ) : (

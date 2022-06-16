@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { Header } from "./components/Header";
 import { TodoList } from "./components/TodoList";
 import { PlusCircle } from "phosphor-react";
@@ -6,16 +6,11 @@ import { PlusCircle } from "phosphor-react";
 import "./global.css";
 
 import styles from "./App.module.css";
-import { TodoContext, TodosProvider } from "./contexts/TodoContext";
-
-export interface TodoItemProps {
-  description: string;
-  done?: boolean;
-}
+import { TodoContext, TodoProps } from "./contexts/TodoContext";
 
 function App() {
   const { setTodoList } = useContext(TodoContext);
-  const [newTodo, setNewTodo] = useState<TodoItemProps>({} as TodoItemProps);
+  const [newTodo, setNewTodo] = useState<TodoProps>({} as TodoProps);
 
   const handleUpdateTodoList = (event: FormEvent) => {
     event.preventDefault();
@@ -24,7 +19,7 @@ function App() {
   };
 
   return (
-    <TodosProvider>
+    <>
       <Header />
       <div className={styles.wrapper}>
         <form className={styles.container} onSubmit={handleUpdateTodoList}>
@@ -48,7 +43,7 @@ function App() {
         </form>
         <TodoList />
       </div>
-    </TodosProvider>
+    </>
   );
 }
 
