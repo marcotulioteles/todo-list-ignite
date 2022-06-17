@@ -9,6 +9,15 @@
   margin-bottom: 0.75rem;
 }
 
+.checked {
+  border: none;
+}
+
+.checked > div > label {
+  color: var(--grey-300);
+  text-decoration: line-through;
+}
+
 .content {
   width: 100%;
   display: flex;
@@ -27,10 +36,6 @@
   padding-left: 2rem;
 }
 
-.checked {
-  color: var(--grey-300);
-  text-decoration: line-through;
-}
 
 .checkboxContainer input {
   position: absolute;
@@ -47,6 +52,12 @@
   width: 1.125rem;
   border: 2px solid var(--blue);
   border-radius: 50%;
+  transition: border-color 0.1s ease;
+  cursor: pointer;
+}
+
+.checkboxContainer .checkmark:hover {
+  border-color: var(--blue-dark);
 }
 
 .checkboxContainer .checkmark::after {
@@ -65,11 +76,33 @@
 }
 
 .checkboxContainer input:checked ~ .checkmark {
-  background-color: var(--purple);
+  background-color: var(--purple-dark);
   border: none;
+  transition: background-color 0.1s ease;
+}
+
+.checkboxContainer input:checked ~ .checkmark:hover {
+  background-color: var(--purple);
 }
 
 .checkboxContainer input:checked ~ .checkmark::after {
   display: block;
 }
 
+.deleteIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  color: var(--grey-300);
+  background-color: transparent; 
+  cursor: pointer;
+  transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+.deleteIcon:hover {
+  background-color: var(--grey-400);
+  color: var(--danger);
+}

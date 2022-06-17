@@ -33,13 +33,9 @@ export function TodoItem({ index }: TodoItemProps) {
   };
 
   return (
-    <li className={styles.container}>
+    <li className={`${styles.container} ${styles[checked ? "checked" : ""]}`}>
       <div className={styles.content}>
-        <label
-          className={`${styles.checkboxContainer} ${
-            styles[checked ? "checked" : ""]
-          }`}
-        >
+        <label className={`${styles.checkboxContainer}`}>
           {todoList[index].description}
           <input
             type="checkbox"
@@ -53,12 +49,14 @@ export function TodoItem({ index }: TodoItemProps) {
           />
           <span className={styles.checkmark}></span>
         </label>
-        <Trash
-          size={24}
+        <div
+          className={styles.deleteIcon}
           onClick={() => {
             handleDeleteTodo(todoList[index].description);
           }}
-        />
+        >
+          <Trash size={16} />
+        </div>
       </div>
     </li>
   );

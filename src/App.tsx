@@ -14,8 +14,10 @@ function App() {
 
   const handleUpdateTodoList = (event: FormEvent) => {
     event.preventDefault();
-    setTodoList((state) => [...state, newTodo]);
-    setNewTodo({ ...newTodo, description: "" });
+    if (newTodo.description) {
+      setTodoList((state) => [...state, newTodo]);
+      setNewTodo({ ...newTodo, description: "" });
+    }
   };
 
   return (

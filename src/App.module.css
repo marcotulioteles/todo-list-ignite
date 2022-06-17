@@ -43,6 +43,11 @@
   font-size: 0.875rem;
   border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.1s ease;
+}
+
+.container button:hover {
+  background-color: var(--blue);
 }
 
 .container button svg {
